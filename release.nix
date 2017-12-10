@@ -4,6 +4,7 @@ rec {
     name = "helloworld";
     src = ./.;
     doCheck = true;
+    checkTarget = "test";
     buildInputs = [ cmake ];
   };
 }
