@@ -7,7 +7,7 @@ rec {
     checkTarget = "test";
     buildInputs = [ cmake ];
     meta.maintainers = [ 
-      "Josef Kemetueller <josef.kemetmueller@gmail.com>"
+      "Josef Kemetmueller <josef.kemetmueller@gmail.com>"
     ]; 
   };
 }
