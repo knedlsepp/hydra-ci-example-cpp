@@ -1,4 +1,4 @@
-{ nixpkgs }:
+{ nixpkgs, src }:
 rec {
-  build = import ./default.nix { inherit nixpkgs; };
+  build = import ./default.nix { inherit nixpkgs src; };
 }
