@@ -8,8 +8,8 @@
 
 { nixpkgs ? (builtins.fetchGit {
     url = git://github.com/NixOS/nixpkgs-channels;
-    ref = "nixos-18.03";
-    rev = "08d245eb31a3de0ad73719372190ce84c1bf3aee";
+    ref = "nixos-18.09";
+    rev = "9d608a6f592144b5ec0b486c90abb135a4b265eb";
   })
 , src ? builtins.fetchGit ./.
 }:
