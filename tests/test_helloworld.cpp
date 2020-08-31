@@ -38,6 +38,12 @@ std::vector<double> do_transform_back_inserter(std::vector<double> as,
   return as;
 }
 
+std::vector<double> do_transform_back_inserter_reserve(std::vector<double> as,
+                                                       std::vector<double> bs) {
+  as.reserve(as.size() + bs.size());
+  std::transform(bs.cbegin(), bs.cend(), std::back_inserter(as), f);
+  return as;
+}
 std::vector<double> do_transform_then_move(std::vector<double> as,
                                            std::vector<double> bs) {
   transform(bs.begin(), bs.end(), bs.begin(), f);
@@ -55,7 +61,7 @@ TEST_CASE("Helloing the world is possible", "[Hello]") {
     auto bs = std::vector<double>(150, 2.);
     return do_emplace(as, bs);
   };
-  BENCHMARK("reserve+emplace") {
+  BENCHMARK("emplace_reserve") {
     auto as = std::vector<double>(100, 3.);
     auto bs = std::vector<double>(150, 2.);
     return do_emplace_reserve(as, bs);
@@ -65,12 +71,17 @@ TEST_CASE("Helloing the world is possible", "[Hello]") {
     auto bs = std::vector<double>(150, 2.);
     return do_transform(as, bs);
   };
-  BENCHMARK("transform back_inserter") {
+  BENCHMARK("transform_back_inserter") {
     auto as = std::vector<double>(100, 3.);
     auto bs = std::vector<double>(150, 2.);
     return do_transform_back_inserter(as, bs);
   };
-  BENCHMARK("transform then move") {
+  BENCHMARK("transform_back_inserter_reserve") {
+    auto as = std::vector<double>(100, 3.);
+    auto bs = std::vector<double>(150, 2.);
+    return do_transform_back_inserter_reserve(as, bs);
+  };
+  BENCHMARK("transform_then_move") {
     auto as = std::vector<double>(100, 3.);
     auto bs = std::vector<double>(150, 2.);
     return do_transform_then_move(as, bs);
