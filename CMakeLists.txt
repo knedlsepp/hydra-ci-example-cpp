@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
 set(CMAKE_CXX_STANDARD 20)
 project(helloworld)
+option(BUILD_SHARED_LIBS "Build shared libraries instead of static ones" ON)
 
-add_library(hellolib SHARED src/hello.cpp)
+add_library(hellolib src/hello.cpp)
 target_include_directories(hellolib PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
