@@ -28,6 +28,7 @@ in with pkgs; stdenv.mkDerivation rec {
   ];
 
   cmakeFlags = [
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
     "-DCMAKE_SKIP_BUILD_RPATH=OFF" # To run tests in build dir. See also: https://github.com/NixOS/nixpkgs/issues/22060
   ];
 
