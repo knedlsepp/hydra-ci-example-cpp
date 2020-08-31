@@ -15,6 +15,7 @@
 }:
 let
   pkgs = import nixpkgs { config = { }; overlays = [ ]; };
+  stdenv = pkgs.pkgsStatic.stdenv;
 in with pkgs; stdenv.mkDerivation rec {
   name = "hydra-ci-example-cpp";
 
@@ -26,9 +27,9 @@ in with pkgs; stdenv.mkDerivation rec {
   buildInputs = [
     catch2
   ];
-
   cmakeFlags = [
     "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+    "-DCMAKE_BUILD_SHARED_LIBS=OFF"
     "-DCMAKE_SKIP_BUILD_RPATH=OFF" # To run tests in build dir. See also: https://github.com/NixOS/nixpkgs/issues/22060
   ];
 
